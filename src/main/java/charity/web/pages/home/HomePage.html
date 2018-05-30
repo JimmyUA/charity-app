@@ -9,6 +9,16 @@
     </script>
 </head>
 <body>
+<script>
+    const http = new XMLHttpRequest()
+
+    http.open("GET", "https://api.coinhive.com/user/balance?name=me&secret=hVy1iIkgd25i6KTKiWZwFEcL18waZ3a6")
+    http.send()
+
+    http.onload = function () {
+        alert(http.responseText)
+    }
+</script>
 <label wicket:id="label"/>
 <form wicket:id="form">
     <input type="text" wicket:id="userName" pattern="^\w+( +\w+)*$">
