@@ -9,20 +9,12 @@
     </script>
 </head>
 <body>
-<script>
-    const http = new XMLHttpRequest()
 
-    http.open("GET", "https://api.coinhive.com/user/balance?name=me&secret=hVy1iIkgd25i6KTKiWZwFEcL18waZ3a6")
-    http.send()
-
-    http.onload = function () {
-        alert(http.responseText)
-    }
-</script>
 <label wicket:id="label"/>
 <form wicket:id="form">
-    <input type="text" wicket:id="userName" pattern="^\w+( +\w+)*$">
+    <input type="text" wicket:id="userName" pattern="^[\wа-яА-Я]+( +[\wа-яА-Я]+)*$">
     <input type="submit" wicket:id="submit">
+    <a href="#" target="_blank" wicket:id="statisticsLink"><label wicket:id="linkLabel"/></a>
 </form>
 </body>
 </html>

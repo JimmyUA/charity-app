@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<script>
+
+
+    const http = new XMLHttpRequest()
+
+        http.open("GET", "https://api.coinhive.com/user/balance?name=me&secret=PyXY774bZ0jWB3wJPl6lP9XH7kHWeITT")
+        http.send()
+
+    http.onload = function getAmount () {
+        var data = http.responseText
+        var amount = data.substr(data.indexOf('"total":') + 8).split(',')[0] * 0.0000000000645 * 85
+        document.getElementById("total").textContent = amount + ' $'
+    }
+</script>
+<script>
+    const http2 = new XMLHttpRequest()
+    http2.open("GET", "https://api.coinhive.com/stats/site?name=me&secret=PyXY774bZ0jWB3wJPl6lP9XH7kHWeITT")
+    http2.send()
+
+    http2.onload = function getOnline () {
+        var speedData = http2.responseText
+        var speed = speedData.substr(speedData.indexOf('{"hashesPerSecond":') + 19).split(',')[0]
+        var online = Math.ceil(speed/20)
+        if (speed < 20){
+            online = 1
+        }
+        document.getElementById("online").textContent = online
+    }
+</script>
+
+<span wicket:id="totalLabel"/>
+<span id="total">0</span><br>
+<span wicket:id="onlineLabel"/>
+<span id="online">0</span><br>
+<span wicket:id="participantsAmountLabel"/>
+<span wicket:id="participantsAmount">0</span>
+
+<div id="image"></div>
+</body>
+</html>
